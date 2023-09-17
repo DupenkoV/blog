@@ -4,7 +4,6 @@
 
 	if (typeof window !== 'undefined') {
 		dataLS = JSON.parse(localStorage.getItem('posts'));
-		console.log(dataLS);
 	}
 
 	let title = '';
@@ -26,6 +25,9 @@
 		};
 		posts = [newPost, ...posts];
 		localStorage.posts = JSON.stringify(posts);
+		title = '';
+		post = '';
+		author = '';
 	};
 
 	// Функция внесения изменений в текст поста
@@ -41,6 +43,12 @@
 				};
 			}
 		});
+		localStorage.posts = JSON.stringify(posts);
+	}
+
+	// Функция удаления поста
+	function deletePost(post) {
+		posts = posts.filter((item) => item.id != post.detail);
 		localStorage.posts = JSON.stringify(posts);
 	}
 </script>
@@ -74,9 +82,10 @@
 	/>
 	<button type="submit">Добавить пост</button>
 </form>
+<hr />
 <div class="wrapper">
 	{#each posts as post}
-		<Post {...post} {editPost} />
+		<Post {...post} {editPost} on:delete={deletePost} />
 	{/each}
 </div>
 
@@ -86,15 +95,20 @@
 	}
 	form {
 		text-align: center;
+		width: 30%;
+		box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+			0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+		padding: 10px 0;
+		margin: 0 auto;
 	}
 	textarea {
-		width: 30%;
+		width: 90%;
 		height: 10rem;
 		padding: 1rem;
 		margin: 1rem 0;
 	}
 	input {
-		width: 20%;
+		width: 50%;
 	}
 	.wrapper {
 		display: flex;
