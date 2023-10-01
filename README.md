@@ -8,6 +8,8 @@
 
 Впервые использовал Svelte. Поэтому не знаком с best practice. Store решил не использовать, т.к. требовалась наиболее простая реализация.
 
+UPD. Внес изменения в поведение отмены редактирования поста. Несколько костыльно...
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
