@@ -13,6 +13,7 @@
 		if (payload === 'close') {
 			post = prevPost;
 		} else if (payload === 'apply') {
+			prevPost = post;
 			dispatch('edit', { id, post });
 		}
 	}
